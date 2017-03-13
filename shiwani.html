@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slider</title>
+  <link rel="stylesheet" type="text/css" href="slider.css">
+</head>
+<body>
+<div class="container">
+  <div class="slideshow">
+     <div>
+        <img src="images/cat1.jpeg" alt="" width="150px" height="150" />
+      </div>
+      <div>
+        <img src="images/cat2.jpeg" alt="" width="150px" height="150"/>
+      </div>
+      <div>
+        <img src="images/cat2.jpg" alt="" width="150px" height="150"/>
+      </div>
+  </div>
+  <div class="slideshow">
+     <div>
+      <img src="images/cat3.jpeg" alt="" width="150px" height="150"/>
+    </div>
+    <div>
+      <img src="images/cat4.jpeg" alt="" width="150px" height="150"/>
+    </div>
+     <div>
+      <img src="images/cat4.jpg" alt="" width="150px" height="150"/>
+    </div>
+  </div>
+  <div class="slideshow">
+   <div>
+     <img src="images/cat5.jpg" alt="" width="150px" height="150"/>
+   </div>
+   <div>
+     <img src="images/cat1.jpg" alt="" width="150px" height="150"/>
+   </div>
+   <div>
+     <img src="images/cat3.jpg" alt="" width="150px" height="150"/>
+   </div>
+  </div>
+</div>
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+  $(function() {
+      console.log($(".slideshow"));
+      $(".slideshow").each(function(){$(this).children().not(":nth-child(1)").hide();});
+
+      setInterval(function() {
+          $('.slideshow').each(function(){
+              $(this).children(':first')
+              .fadeOut(1000)
+              .next()
+              .fadeIn(1000)
+              .end()
+              .appendTo($(this));
+          });
+      },  3000);
+  });
+</script>
+</body>
+</html>
+
