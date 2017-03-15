@@ -39,6 +39,7 @@
      <img src="images/cat3.jpg" alt="" width="150px" height="150"/>
    </div>
   </div>
+  <button id="next">Next Slide</button>
 </div>
  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script>
@@ -46,7 +47,22 @@
       console.log($(".slideshow"));
       $(".slideshow").each(function(){$(this).children().not(":nth-child(1)").hide();});
 
-      setInterval(function() {
+      var getTimeoutId = function(){
+        return setInterval(function() {
+            $('.slideshow').each(function(){
+                $(this).children(':first')
+                .fadeOut(1000)
+                .next()
+                .fadeIn(1000)
+                .end()
+                .appendTo($(this));
+            });
+        },  3000);
+      }
+      var timeoutId = getTimeoutId();
+
+      $("#next").click(function() {
+          clearTimeout(timeoutId);
           $('.slideshow').each(function(){
               $(this).children(':first')
               .fadeOut(1000)
@@ -55,7 +71,9 @@
               .end()
               .appendTo($(this));
           });
-      },  3000);
+          timeoutId = getTimeoutId();
+      });
+
   });
 </script>
 </body>
